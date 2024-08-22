@@ -4,6 +4,10 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
+class Post(BaseModel):
+    title: str
+    content: str
+
 # Decorator allows this to hit the root 
 @app.get("/")
 async def root():
@@ -16,6 +20,8 @@ async def return_user_name():
     return user_name
 
 @app.post("/createpost")
-def create_posts(payload: dict = Body(...)):
-    print(payload)
-    return {"new post": f"title {payload['title']} content: {payload['content']}"}
+def create_posts(post: Post):
+    print(post)
+    return {}
+
+# Will give title and content, both strings 
