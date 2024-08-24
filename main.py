@@ -11,6 +11,8 @@ class Post(BaseModel):
     published: bool = True
     rating: Optional[int] = None
 
+my_posts = [{"title": "title of post 1", "content": "content of post 1", "id": 1}, {"title": "Favorite foods", "content": "I like pizza", "id": 2}]
+
 # Decorator allows this to hit the root 
 @app.get("/")
 async def root():
@@ -18,9 +20,9 @@ async def root():
 
 # Testing a new get method 
 user_name = "Hello world"
-@app.get("/return_user")
-async def return_user_name():
-    return user_name
+@app.get("/posts")
+async def get_posts():
+    return {"data": my_posts}
 
 @app.post("/createpost")
 def create_posts(post: Post):
