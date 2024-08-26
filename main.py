@@ -28,8 +28,8 @@ async def get_posts():
 
 @app.get("/posts/{id}")
 def get_post(id):
-    print(id)
-    return {"post_detail": f"Here is post {id}"}
+    post = find_post(int(id))
+    return {"post_detail": post}
 
 @app.post("/posts")
 def create_posts(post: Post):
@@ -37,5 +37,11 @@ def create_posts(post: Post):
     post_dict['id'] = randrange(0, 100000)
     my_posts.append(post_dict)
     return {"data": post_dict}
+
+def find_post(id):
+    for p in my_posts:
+        if p["id"] == id:
+            return p
+        
 
 # Will give title and content, both strings 
