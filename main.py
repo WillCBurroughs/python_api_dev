@@ -27,8 +27,8 @@ async def get_posts():
     return {"data": my_posts}
 
 @app.get("/posts/{id}")
-def get_post(id):
-    post = find_post(int(id))
+def get_post(id: int):
+    post = find_post(id)
     return {"post_detail": post}
 
 @app.post("/posts")
