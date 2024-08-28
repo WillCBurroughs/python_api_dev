@@ -26,6 +26,11 @@ user_name = "Hello world"
 async def get_posts():
     return {"data": my_posts}
 
+@app.get("/posts/latest")
+def get_latest_post():
+    post = my_posts[-1]
+    return {"detail": post}
+
 @app.get("/posts/{id}")
 def get_post(id: int):
     post = find_post(id)
