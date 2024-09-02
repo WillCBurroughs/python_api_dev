@@ -53,3 +53,14 @@ def find_post(id):
         
 
 # Will give title and content, both strings 
+
+def find_index_post(id):
+    for i,p in enumerate(my_posts):
+        if p["id"] == id:
+            return i
+
+@app.delete("/posts{id}")
+def delete_post():
+    index = find_index_post(id)
+    my_posts.pop(index)
+    return {"message": "post was successfully deleted"}
