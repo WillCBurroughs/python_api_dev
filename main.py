@@ -60,7 +60,7 @@ def find_index_post(id):
             return i
 
 @app.delete("/posts{id}")
-def delete_post():
+def delete_post(id: int):
     index = find_index_post(id)
     my_posts.pop(index)
     return {"message": "post was successfully deleted"}
