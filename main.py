@@ -59,7 +59,7 @@ def find_index_post(id):
         if p["id"] == id:
             return i
 
-@app.delete("/posts{id}")
+@app.delete("/posts/{id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_post(id: int):
     index = find_index_post(id)
     my_posts.pop(index)
