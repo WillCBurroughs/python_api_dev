@@ -53,7 +53,6 @@ def find_post(id):
         
 
 # Will give title and content, both strings 
-
 def find_index_post(id):
     for i,p in enumerate(my_posts):
         if p["id"] == id:
