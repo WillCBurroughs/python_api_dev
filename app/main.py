@@ -66,6 +66,13 @@ def delete_post(id: int):
     my_posts.pop(index)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
+@app.put("/posts/default")
+def add_random_post():
+    post = {"title": "This is a default post", "content": "Here you can see ...", "id": randrange(0, 100000)}
+    post_dict = post.model_dump()
+    my_posts.append(post_dict)
+    return {"data": post_dict}
+
 @app.put("/posts/{id}")
 def update_post(id: int, post: Post):
     index = find_index_post(id)
@@ -75,3 +82,4 @@ def update_post(id: int, post: Post):
     post_dict["id"] = id
     my_posts[index] = post_dict
     return {"data" : post_dict}
+
